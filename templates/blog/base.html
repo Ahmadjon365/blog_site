@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</html>
+<body>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div id="sidebar">
+    <h2>IT-Yangiliklar</h2>
+    <p>Informatikaga oid yangiliklar</p>
+    {% block sidebar %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
