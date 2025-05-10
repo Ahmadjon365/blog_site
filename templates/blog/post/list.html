@@ -1,37 +1,20 @@
 {% extends "blog/base.html" %}
-
-{% block title %}IT-News{% endblock %}
-
+{% block title %}IT-NEWS{% endblock %}
 {% block content %}
-    <h1>Yangiliklar</h1>
-    
+    <h1>IT-NEWS 💻 </h1>
     {% for post in posts %}
-        <article class="post">
+        <div class="post">
             <h2>
-                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                <a href="{{ post.get_absolute_url }}">
+                    {{ post.title }}
+                </a>
             </h2>
             <p class="date">
                 Published {{ post.publish }} by {{ post.author }}
             </p>
             {{ post.body|truncatewords:30|linebreaks }}
-        </article>
+        </div>
+
     {% endfor %}
-
-    <div class="pagination">
-        <span class="page-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
+    {% include "paginator.html" with page=page_obj %}
 {% endblock %}
